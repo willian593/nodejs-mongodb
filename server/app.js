@@ -24,10 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 
 /* 
 ============================================================== 
-<!-- rutas -->
+<!-- Configuracion global de rutas -->
  ==============================================================
 */
 
-app.use('/api/usuarios', require('../src/routes/users'));
+app.use(require('../src/routes/index'));
 
 module.exports = app;

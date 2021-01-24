@@ -2,6 +2,7 @@
 /api/usuarios/
 */
 const { Router } = require('express');
+const router = Router();
 const {
   getUsers,
   createUsers,
@@ -9,11 +10,15 @@ const {
   deleteUsers,
 } = require('../controllers/users');
 
-const router = Router();
+const {
+  validarJWT,
+  validarADMIN_ROLE,
+  validarMismoUser,
+} = require('../middleware/validar-jwt');
 
-router.get('/', getUsers);
-router.post('/', createUsers);
-router.put('/:id', updateUsers);
-router.delete('/:id', deleteUsers);
+router.get('/', validarJWT, getUsers);
+router.post('/', [validarJWT], createUsers);
+router.put('/:id', [validarJWT, validarMismoUser], updateUsers);
+router.delete('/:id', [validarJWT, validarADMIN_ROLE], deleteUsers);
 
 module.exports = router;

@@ -12,7 +12,7 @@ const getUsers = async (req, res = response) => {
   const mostrar = Number(req.query.mostrar) || 5;
 
   const [usuarios, total] = await Promise.all([
-    Usuario.find({ state: true }, 'first_name state') // solo quiero q aparesca el nombre
+    Usuario.find({ state: true }, 'first_name state email') // solo quiero q aparesca el nombre
       .skip(desde)
       .limit(mostrar)
       .sort({ first_name: 1 })

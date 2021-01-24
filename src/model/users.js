@@ -20,7 +20,7 @@ const UsuariosSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: [true, 'El {PATH} es requerido'],
     },
     email: {
       type: String,
