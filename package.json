@@ -12,9 +12,11 @@
     "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "google-auth-library": "^6.1.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.13",
     "mongoose-unique-validator": "^2.0.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport-facebook": "^3.0.0"
   }
 }

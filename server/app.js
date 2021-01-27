@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const { dbConnection } = require('./conexion-mongo');
+const path = require('path');
 
 // crear servidor express
 const app = express();
@@ -21,6 +22,9 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// habilitar la carpeta public, necesitamos importar el path
+app.use(express.static(path.resolve(__dirname, '../src/public')));
 
 /* 
 ============================================================== 
