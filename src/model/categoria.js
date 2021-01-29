@@ -8,6 +8,7 @@ const CategoriaSchema = new Schema(
       unique: true,
       required: [true, 'La descripción es obligatoria'],
     },
+    producto: { required: true, type: Schema.Types.ObjectId, ref: 'Producto' },
     usuario: { required: true, type: Schema.Types.ObjectId, ref: 'Usuario' },
   },
   { timestamps: {} }
@@ -21,6 +22,7 @@ CategoriaSchema.method('toJSON', function () {
 
 CategoriaSchema.pre('find', function () {
   this.populate('usuario', 'first_name img');
+  this.populate('producto', 'nombre');
   this.sort({ descripcion: 1 });
   this.collation({ locale: 'en', strength: 2 });
 });

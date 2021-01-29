@@ -8,13 +8,11 @@ const Producto = require('../model/producto');
  ===========================
 */
 const getProductos = async (req, res = response) => {
-  // const desde = Number(req.query.desde) || 0;
-  // const mostrar = Number(req.query.mostrar) || 5;
+  const desde = Number(req.query.desde) || 0;
+  const mostrar = Number(req.query.mostrar) || 5;
 
   const [productos, total] = await Promise.all([
-    Producto.find({ disponible: true }),
-    // .skip(desde)
-    // .limit(mostrar)
+    Producto.find({ disponible: true }).skip(desde).limit(mostrar),
 
     Producto.countDocuments({ disponible: true }),
   ]);
