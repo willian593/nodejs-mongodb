@@ -41,7 +41,7 @@ const validarADMIN_ROLE = async (req, res, next) => {
     if (usuarioDB.role !== 'ADMIN_ROLE') {
       return res.status(403).json({
         info: false,
-        msg: 'No tienes permiso para crear usuarios',
+        msg: 'No tienes permiso para ejecutar esta acción',
       });
     }
     next();
