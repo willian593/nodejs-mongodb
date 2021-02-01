@@ -8,8 +8,8 @@ const CategoriaSchema = new Schema(
       unique: true,
       required: [true, 'La descripción es obligatoria'],
     },
-    producto: { required: true, type: Schema.Types.ObjectId, ref: 'Producto' },
-    usuario: { required: true, type: Schema.Types.ObjectId, ref: 'Usuario' },
+    img: { type: String },
+    usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
   },
   { timestamps: {} }
 );

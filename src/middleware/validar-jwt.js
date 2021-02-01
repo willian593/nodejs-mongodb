@@ -84,10 +84,37 @@ const validarMismoUser = async (req, res, next) => {
     });
   }
 };
+
+// Mandar token por la url (params)
+
+const verificaTokenImg = async (req, res, next) => {
+  // leer token por params
+  const token = req.query.token;
+
+  if (!token) {
+    return res.status(401).json({
+      info: false,
+      msg: 'No hay token en la url (params)',
+    });
+  }
+  try {
+    const { uid } = jwt.verify(token, process.env.JWT_SECRET);
+    req.uid = uid;
+    next();
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({
+      info: false,
+      msg: 'Token no valido',
+    });
+  }
+};
+
 module.exports = {
   validarJWT,
   validarADMIN_ROLE,
   validarMismoUser,
+  verificaTokenImg,
 };
 /*
 validarJWT.- proteger rutas mediante token

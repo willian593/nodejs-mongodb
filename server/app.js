@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-const { dbConnection } = require('./conexion-mongo');
+const helmet = require('helmet');
 const path = require('path');
+
+const { dbConnection } = require('./conexion-mongo');
 
 // crear servidor express
 const app = express();
@@ -25,6 +27,10 @@ app.use(express.urlencoded({ extended: false }));
 
 // habilitar la carpeta public, necesitamos importar el path
 app.use(express.static(path.resolve(__dirname, '../src/public')));
+
+app.use(helmet());
+app.use(helmet.hidePoweredBy());
+app.disable('x-powered-by');
 
 /* 
 ============================================================== 

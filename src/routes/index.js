@@ -19,4 +19,7 @@ app.use('/api/producto', require('./producto'));
 // busqueda
 app.use('/api/busqueda', require('./search'));
 
+//subir imagen
+app.use('/api/upload', require('./upload-img'));
+
 module.exports = app;
